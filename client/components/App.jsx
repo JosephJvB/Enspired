@@ -5,7 +5,7 @@ import Pool from './Pool'
 const App = () => {
   return (
     <div className='app'>
-      <Pool />
+      <Pool h={window.screen.availHeight} w={window.screen.availWidth} />
     </div>
   )
 }

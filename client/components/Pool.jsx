@@ -4,32 +4,46 @@ class Pool extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      x: null,
-      y: null,
-      r: 2
+      sx: [],
+      sy: [],
+      r: 25
     }
     this.ripple = this.ripple.bind(this)
     this.rippleBigger = this.rippleBigger.bind(this)
+    this.ticker = this.ticker.bind(this)
+  }
+
+  componentDidMount () {
+    // this.ticker()
+    // console.log(window)
+  }
+
+  ticker () {
+    const { sx, sy } = this.state
+    setInterval(() => this.setState({ sx: sx.slice(1, sx.length), sy: sy.slice(1, sx.length) }), 300)
   }
 
   ripple (x, y) {
-    this.setState({ x, y })
-    this.rippleBigger()
+    let { sx, sy } = this.state
+    if (sx.length > 6) this.setState({ sx: sx.slice(1, sx.length), sy: sy.slice(1, sy.length) })
+    this.setState({ x: sx.push(x), y: sy.push(y) })
+    // this.rippleBigger()
   }
 
   rippleBigger () {
-    if (this.state.r >= 30) return this.setState({ x: null, y: null, r: 2 })
-    this.setState({ r: this.state.r * 2 })
-    setTimeout(this.rippleBigger, 300)
+  //   if (this.state.r >= 50) return this.setState({ r: 2 })
+  //   // this.setState({ r: this.state.r * 1.1 })
+  //   // setTimeout(this.rippleBigger, 100000)
   }
 
   render () {
-    const { x, y, r } = this.state
-    const style = { height: 500, width: 500 }
+    const { sy, r } = this.state
+    const { h, w } = this.props
+    const style = { height: h, width: w }
     return (
-      <div className='pools' style={style} onClick={(e) => { this.ripple(e.pageX, e.pageY) }}>
+      <div className='pools' style={style} onMouseMove={(e) => { this.ripple(e.pageX, e.pageY) }}>
         <svg style={style}>
-          <circle cx={x} cy={y} r={r} />
+          {this.state.sx.map((x, i) => <circle key={i} cx={x} cy={sy[i]} r={r / (i * 0.6)} />)}
         </svg>
       </div>
     )
