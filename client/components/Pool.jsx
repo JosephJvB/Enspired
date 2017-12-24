@@ -6,39 +6,20 @@ class Pool extends React.Component {
     this.state = {
       sx: [],
       sy: [],
-      r: 12
+      r: 10
     }
     this.ripple = this.ripple.bind(this)
-    this.rippleBigger = this.rippleBigger.bind(this)
-    this.ticker = this.ticker.bind(this)
     this.clear = this.clear.bind(this)
-  }
-
-  componentDidMount () {
-    // this.ticker()
-    // console.log(window)
   }
 
   clear () {
     this.setState({ sx: [], sy: [] })
   }
 
-  ticker () {
-    const { sx, sy } = this.state
-    setInterval(() => this.setState({ sx: sx.slice(1, sx.length), sy: sy.slice(1, sx.length) }), 300)
-  }
-
   ripple (x, y) {
     let { sx, sy } = this.state
     if (sx.length > 13) this.setState({ sx: sx.slice(1, sx.length), sy: sy.slice(1, sy.length) })
     this.setState({ x: sx.push(x), y: sy.push(y) })
-    // this.rippleBigger()
-  }
-
-  rippleBigger () {
-  //   if (this.state.r >= 50) return this.setState({ r: 2 })
-  //   // this.setState({ r: this.state.r * 1.1 })
-  //   // setTimeout(this.rippleBigger, 100000)
   }
 
   render () {
