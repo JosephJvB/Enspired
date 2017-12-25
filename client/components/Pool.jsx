@@ -7,6 +7,7 @@ class Pool extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      saved: [],
       sx: [],
       sy: [],
       r: 10,
@@ -17,10 +18,20 @@ class Pool extends React.Component {
     this.clear = this.clear.bind(this)
     this.changeCol = this.changeCol.bind(this)
     this.sizeChange = this.sizeChange.bind(this)
+    this.save = this.save.bind(this)
   }
 
   clear () {
-    this.setState({ sx: [], sy: [] })
+    this.setState({ saved: [], sx: [], sy: [] })
+  }
+
+  save () {
+    const { sx, sy, saved, col, r } = this.state
+    const dots = sx.map((x, i) => {
+      let newDot = { x, y: sy[i], col, r }
+      return newDot
+    })
+    this.setState({ saved: [...saved, dots], sx: [], sy: [] })
   }
 
   ripple (x, y) {
@@ -39,16 +50,17 @@ class Pool extends React.Component {
   }
 
   render () {
-    const { sx, sy, r, col } = this.state
+    const { sx, sy, r, col, saved } = this.state
     const { h, w } = this.props
     const style = { height: h, width: w }
     return (
-      <div className='columns' id='pool' style={style} onClick={this.clear} onMouseMove={(e) => { this.ripple(e.pageX, e.pageY) }}>
-        <div className='column is-1'>
-          <Pallet cc={this.changeCol} size={this.sizeChange} />
+      <div className='columns' id='pool' style={style} onMouseMove={(e) => { this.ripple(e.pageX, e.pageY) }}>
+        <div className='column is-1' onMouseMove={() => this.setState({ sx: [], sy: [] })}>
+          <Pallet cc={this.changeCol} size={this.sizeChange} clear={this.clear} />
         </div>
-        <svg style={style}>
+        <svg style={style} onClick={this.save}>
           {sx.map((x, i) => <Ripple key={i} x={x - 90} y={sy[i] + 10} r={r * (i * 0.5)} c={col} />)}
+          {saved.length > 0 && saved.map(arr => arr.map((dot, i) => <circle key={i} cx={dot.x - 90} cy={dot.y + 10} r={dot.r * (i * 0.5)} fill={dot.col} fillOpacity={0.2} />))}
         </svg>
       </div>
     )
