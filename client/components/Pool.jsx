@@ -13,8 +13,8 @@ class Pool extends React.Component {
       r: 10,
       cull: ['blue', 'cyan', 'purple', 'pink', 'blue', 'cyan', 'purple', 'pink', 'blue', 'cyan', 'purple', 'pink'],
       fillCol: null,
-      strokeCol: null,
-      fillO: 0.2
+      strokeCol: 'white',
+      fillO: 0
     }
     this.ripple = this.ripple.bind(this)
     this.clear = this.clear.bind(this)
