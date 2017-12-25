@@ -11,7 +11,7 @@ const Pallet = (props) => {
       <button id='pinkBut' className='button is-large' onClick={() => props.cc('pink', props.side)}></button>
       <button id='orangeBut' className='button is-large' onClick={() => props.cc('orange', props.side)}></button>
       <button id='brownBut' className='button is-large' onClick={() => props.cc('rgb(143, 74, 22)', props.side)}></button>
-      <button id='purpleBut' className='button is-large' onClick={() => props.cc('purple', props.side)}></button>
+      <button id='purpleBut' className='button is-large' onDoubleClick={() => props.cc('lol', props.side)} onClick={() => props.cc('purple', props.side)}></button>
       <button id='blackBut' className='button is-large' onClick={() => props.cc('black', props.side)}></button>
       <button id='whiteBut' className='button is-large' onClick={() => props.cc('white', props.side)}></button>
       <button id='offBut' className='button is-large' onClick={() => props.cc(null, props.side)}>OFF</button>

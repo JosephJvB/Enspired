@@ -22,6 +22,36 @@ class Pool extends React.Component {
     this.sizeChange = this.sizeChange.bind(this)
     this.save = this.save.bind(this)
     this.undo = this.undo.bind(this)
+    this.pulse = this.pulse.bind(this)
+    this.prepPulse = this.prepPulse.bind(this)
+    this.antiPulse = this.antiPulse.bind(this)
+  }
+
+  antiPulse () {
+    const { saved } = this.state
+    const newSave = saved.map(arr => arr.map(dot => {
+      const newDot = { x: dot.x, y: dot.y, r: dot.r - 10, fillO: dot.fillO, strokeCol: dot.strokeCol, fillCol: dot.fillCol }
+      return newDot
+    })
+    )
+    this.setState({ saved: newSave })
+  }
+
+  prepPulse () {
+    console.log(this.state.pulse)
+    console.log('pulse!')
+    setInterval(this.pulse, 50)
+    setTimeout(() => setInterval(this.antiPulse, 50), 1000)
+  }
+
+  pulse () {
+    const { saved } = this.state
+    const newSave = saved.map(arr => arr.map(dot => {
+      const newDot = { x: dot.x, y: dot.y, r: dot.r + 10, fillO: dot.fillO, strokeCol: dot.strokeCol, fillCol: dot.fillCol }
+      return newDot
+    })
+    )
+    this.setState({ saved: newSave })
   }
 
   clear () {
@@ -53,6 +83,7 @@ class Pool extends React.Component {
     switch (side) {
       case 's':
         this.setState({ strokeCol: c })
+        if (c === 'lol') return this.prepPulse()
         break
       case 'f':
         if (c === null) this.setState({ fillO: 0 })
