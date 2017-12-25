@@ -12,23 +12,31 @@ class Pool extends React.Component {
       sy: [],
       r: 10,
       cull: ['blue', 'cyan', 'purple', 'pink', 'blue', 'cyan', 'purple', 'pink', 'blue', 'cyan', 'purple', 'pink'],
-      col: null
+      fillCol: null,
+      strokeCol: null,
+      fillO: 0.2
     }
     this.ripple = this.ripple.bind(this)
     this.clear = this.clear.bind(this)
     this.changeCol = this.changeCol.bind(this)
     this.sizeChange = this.sizeChange.bind(this)
     this.save = this.save.bind(this)
+    this.undo = this.undo.bind(this)
   }
 
   clear () {
     this.setState({ saved: [], sx: [], sy: [] })
   }
 
+  undo () {
+    const { saved } = this.state
+    this.setState({ saved: saved.slice(0, saved.length - 1) })
+  }
+
   save () {
-    const { sx, sy, saved, col, r } = this.state
+    const { sx, sy, saved, fillCol, strokeCol, r, fillO } = this.state
     const dots = sx.map((x, i) => {
-      let newDot = { x, y: sy[i], col, r }
+      let newDot = { x, y: sy[i], fillCol, strokeCol, r, fillO }
       return newDot
     })
     this.setState({ saved: [...saved, dots], sx: [], sy: [] })
@@ -41,8 +49,18 @@ class Pool extends React.Component {
     this.setState({ x: sx.push(x), y: sy.push(y) })
   }
 
-  changeCol (c) {
-    this.setState({ col: c })
+  changeCol (c, side) {
+    switch (side) {
+      case 's':
+        this.setState({ strokeCol: c })
+        break
+      case 'f':
+        if (c === null) this.setState({ fillO: 0 })
+        if (c !== null) this.setState({ fillO: 0.2 })
+        this.setState({ fillCol: c })
+        break
+      default:
+    }
   }
 
   sizeChange (v) {
@@ -50,18 +68,21 @@ class Pool extends React.Component {
   }
 
   render () {
-    const { sx, sy, r, col, saved } = this.state
+    const { sx, sy, r, fillCol, strokeCol, fillO, saved } = this.state
     const { h, w } = this.props
     const style = { height: h, width: w }
     return (
       <div className='columns' id='pool' style={style} onMouseMove={(e) => { this.ripple(e.pageX, e.pageY) }}>
         <div className='column is-1' onMouseMove={() => this.setState({ sx: [], sy: [] })}>
-          <Pallet cc={this.changeCol} size={this.sizeChange} clear={this.clear} />
+          <Pallet cc={this.changeCol} size={this.sizeChange} clear={this.clear} undo={this.undo} side='f'/>
         </div>
         <svg style={style} onClick={this.save}>
-          {sx.map((x, i) => <Ripple key={i} x={x - 90} y={sy[i] + 10} r={r * (i * 0.5)} c={col} />)}
-          {saved.length > 0 && saved.map(arr => arr.map((dot, i) => <circle key={i} cx={dot.x - 90} cy={dot.y + 10} r={dot.r * (i * 0.5)} fill={dot.col} fillOpacity={0.2} />))}
+          {sx.map((x, i) => <Ripple key={i} x={x - 90} y={sy[i] + 10} r={r * (i * 0.5)} fc={fillCol} sc={strokeCol} fo={fillO} />)}
+          {saved.length > 0 && saved.map(arr => arr.map((dot, i) => <Ripple key={i} x={dot.x - 90} y={dot.y + 10} r={dot.r * (i * 0.5)} fc={dot.fillCol} sc={dot.strokeCol} fo={dot.fillO} />))}
         </svg>
+        <div className='column is-1' onMouseMove={() => this.setState({ sx: [], sy: [] })}>
+          <Pallet cc={this.changeCol} size={this.sizeChange} clear={this.clear} undo={this.undo} side='s'/>
+        </div>
       </div>
     )
   }

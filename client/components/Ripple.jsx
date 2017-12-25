@@ -19,9 +19,9 @@ class Ripple extends React.Component {
   // }
 
   render () {
-    const { x, y, c, r } = this.props
+    const { x, y, fc, sc, r, fo } = this.props
     return (
-      <circle cx={x} cy={y} r={r} stroke={c} fill={c} strokeOpacity={0} fillOpacity={0.2} />
+      <circle cx={x} cy={y} r={r} stroke={sc} fill={fc} strokeOpacity={1} fillOpacity={fo} />
     )
   }
 }

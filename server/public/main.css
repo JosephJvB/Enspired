@@ -36,6 +36,11 @@ background-color: rgb(164, 204, 255)
   height: 40px;
   background-color: orange
 }
+#brownBut {
+  width: 90px;
+  height: 40px;
+  background-color: rgb(143, 74, 22)
+}
 #purpleBut {
   width: 90px;
   height: 40px;
