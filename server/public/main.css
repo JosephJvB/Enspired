@@ -2,37 +2,38 @@
 /* background-color: rgb(134, 170, 218) */
 }
 #greenBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: green;
 }
 #redBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: red
 }
 #blueBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: blue
 }
 #cyanBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: cyan
 }
 #yellowBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: yellow
 }
 #pinkBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: pink
 }
 #orangeBut {
-  width: 100px;
-  color: rgb(255, 255, 255);
+  width: 90px;
   background-color: orange
+}
+#purpleBut {
+  width: 90px;
+  background-color: rgb(174, 0, 255)
+}
+#blackBut {
+  width: 90px;
+  background-color: rgb(0, 0, 0)
 }

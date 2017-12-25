@@ -1,6 +1,7 @@
 import React from 'react'
 
-// import Ripple from './Ripple'
+import Ripple from './Ripple'
+import Pallet from './Pallet'
 
 class Pool extends React.Component {
   constructor (props) {
@@ -44,21 +45,10 @@ class Pool extends React.Component {
     return (
       <div className='columns' id='pool' style={style} onClick={this.clear} onMouseMove={(e) => { this.ripple(e.pageX, e.pageY) }}>
         <div className='column is-1'>
-          <button id='redBut' className='button is-large' onClick={() => this.changeCol('red')}>RED</button>
-          <button id='greenBut' className='button is-large' onClick={() => this.changeCol('green')}>GREEN</button>
-          <button id='blueBut' className='button is-large' onClick={() => this.changeCol('blue')}>BLUE</button>
-          <button id='cyanBut' className='button is-large' onClick={() => this.changeCol('cyan')}>CYAN</button>
-          <button id='yellowBut' className='button is-large' onClick={() => this.changeCol('yellow')}>YELLOW</button>
-          <button id='pinkBut' className='button is-large' onClick={() => this.changeCol('pink')}>PINK</button>
-          <button id='orangeBut' className='button is-large' onClick={() => this.changeCol('orange')}>ORANGE</button>
-          <br />
-          <br />
-          <h1 className='subtitle is-4'>SIZE: </h1>
-          <button className='button' onClick={() => this.sizeChange(5)}>+</button>
-          <button className='button' onClick={() => this.sizeChange(-5)}>-</button>
+          <Pallet cc={this.changeCol} size={this.sizeChange} />
         </div>
         <svg style={style}>
-          {sx.map((x, i) => <circle key={i} cx={x - 80} cy={sy[i]} r={r * (i * 0.5)} stroke={col} fill={col} strokeOpacity={0.5} strokeWidth={5} fillOpacity={0.3} />)}
+          {sx.map((x, i) => <Ripple key={i} x={x - 90} y={sy[i] + 10} r={r * (i * 0.5)} c={col} />)}
         </svg>
       </div>
     )

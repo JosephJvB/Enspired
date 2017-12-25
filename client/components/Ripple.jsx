@@ -6,17 +6,17 @@ class Ripple extends React.Component {
     this.state = {
       r: this.props.r
     }
-    this.embiggen = this.embiggen.bind(this)
+    // this.embiggen = this.embiggen.bind(this)
   }
 
-  componentDidMount () {
-    this.embiggen(this.props.r)
-  }
+  // componentDidMount () {
+  //   this.embiggen(this.props.r)
+  // }
 
-  embiggen (r) {
-    setInterval(this.setState({ r: r * 1.4 }), 10)
-    console.log(this.state.r)
-  }
+  // embiggen (r) {
+  //   setInterval(this.setState({ r: r * 1.4 }), 10)
+  //   console.log(this.state.r)
+  // }
 
   render () {
     const { x, y, c, r } = this.props
