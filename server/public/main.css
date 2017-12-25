@@ -1,3 +1,38 @@
-circle {
- background-color: red
+#pool {
+/* background-color: rgb(134, 170, 218) */
+}
+#greenBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: green;
+}
+#redBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: red
+}
+#blueBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: blue
+}
+#cyanBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: cyan
+}
+#yellowBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: yellow
+}
+#pinkBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: pink
+}
+#orangeBut {
+  width: 100px;
+  color: rgb(255, 255, 255);
+  background-color: orange
 }
