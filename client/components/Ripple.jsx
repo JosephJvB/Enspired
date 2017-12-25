@@ -6,22 +6,22 @@ class Ripple extends React.Component {
     this.state = {
       r: this.props.r
     }
-    this.embiggen = this.embiggen.bind(this)
+    // this.embiggen = this.embiggen.bind(this)
   }
 
-  componentDidMount () {
-    this.embiggen(this.props.r)
-  }
+  // componentDidMount () {
+  //   this.embiggen(this.props.r)
+  // }
 
-  embiggen (r) {
-    setInterval(this.setState({ r: r * 1.4 }), 10)
-    console.log(this.state.r)
-  }
+  // embiggen (r) {
+  //   setInterval(this.setState({ r: r * 1.4 }), 10)
+  //   console.log(this.state.r)
+  // }
 
   render () {
-    const { x, y, c, r } = this.props
+    const { x, y, fc, sc, r, fo } = this.props
     return (
-      <circle cx={x} cy={y} r={r} stroke={c} fill={c} strokeOpacity={0.5} strokeWidth={5} fillOpacity={0.2} />
+      <circle cx={x} cy={y} r={r} stroke={sc} fill={fc} strokeOpacity={1} fillOpacity={fo} />
     )
   }
 }
