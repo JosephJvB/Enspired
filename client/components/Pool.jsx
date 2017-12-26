@@ -27,35 +27,38 @@ class Pool extends React.Component {
     this.antiPulse = this.antiPulse.bind(this)
   }
 
-  antiPulse () {
+  antiPulse (num) {
     const { saved } = this.state
     const newSave = saved.map(arr => arr.map(dot => {
       const newDot = { x: dot.x, y: dot.y, r: dot.r - 10, fillO: dot.fillO, strokeCol: dot.strokeCol, fillCol: dot.fillCol }
       return newDot
     })
     )
+    if (num === 30) return
     this.setState({ saved: newSave })
+    setTimeout(() => this.antiPulse(num + 1), 50)
   }
 
   prepPulse () {
-    console.log(this.state.pulse)
-    console.log('pulse!')
-    setInterval(this.pulse, 50)
-    setTimeout(() => setInterval(this.antiPulse, 50), 1000)
+    this.pulse(0)
+    setTimeout(() => this.antiPulse(0), 2000)
+    setTimeout(this.clear, 3600)
   }
 
-  pulse () {
+  pulse (num) {
     const { saved } = this.state
     const newSave = saved.map(arr => arr.map(dot => {
       const newDot = { x: dot.x, y: dot.y, r: dot.r + 10, fillO: dot.fillO, strokeCol: dot.strokeCol, fillCol: dot.fillCol }
       return newDot
     })
     )
+    if (num === 30) return
     this.setState({ saved: newSave })
+    setTimeout(() => this.pulse(num + 1), 50)
   }
 
   clear () {
-    this.setState({ saved: [], sx: [], sy: [] })
+    this.setState({ saved: [], sx: [], sy: [], strokeCol: 'white' })
   }
 
   undo () {
@@ -87,7 +90,7 @@ class Pool extends React.Component {
         break
       case 'f':
         if (c === null) this.setState({ fillO: 0 })
-        if (c !== null) this.setState({ fillO: 0.2 })
+        if (c !== null) this.setState({ fillO: 0.1 })
         this.setState({ fillCol: c })
         break
       default:
