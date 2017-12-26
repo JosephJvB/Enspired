@@ -4,7 +4,7 @@ Staying at a beach with family for the Christmas of 2017, I got an idea from the
 
 ### INSTRUCTIONS:
 
-LEFT palette:
+* LEFT palette:
 
 
 Colour palette controls the fill of the circles.
@@ -19,7 +19,7 @@ DOUBLE CLICK left off button to reset background colour.
 
 
 
-RIGHT palette:
+* RIGHT palette:
 
 
 Colour palette controls the outline of the circles.
