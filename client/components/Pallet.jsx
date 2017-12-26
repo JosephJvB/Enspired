@@ -17,9 +17,10 @@ const Pallet = (props) => {
       <button id='offBut' className='button is-large' onClick={() => props.cc(null, props.side)}>OFF</button>
       <br />
       <br />
-      <button id='plusBut' className='button is-large' onClick={() => props.size(2)}>+</button>
-      <button id='minusBut' className='button is-large' onClick={() => props.size(-2)}>-</button>
-      <br />
+      <button id='plusBut' className='button' onClick={() => props.size(2, props.side)}>+</button>
+      <button id='minusBut' className='button' onClick={() => props.size(-2, props.side)}>-</button>
+      {props.side === 'f' && <p>OPACITY: {Math.ceil(props.fill * 10)}</p>}
+      {props.side === 's' && <p>RADIUS: {props.r}</p>}
       <br />
       <button id='deleteBut' className='button is-large is-success' onClick={() => props.undo()}>U</button>
       <button id='deleteBut' className='button is-large is-danger' onClick={() => props.clear()}>X</button>
