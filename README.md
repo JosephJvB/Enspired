@@ -5,20 +5,36 @@ Staying at a beach with family for the Christmas of 2017, I got an idea from the
 ### INSTRUCTIONS:
 
 LEFT palette:
+
+
 Colour palette controls the fill of the circles.
+
 control the opacity with the + and - buttons.
+
 off button toggles colour fill on and off.
+
 Undo deletes the last saved circle set, can be used multiple times.
+
 DOUBLE CLICK left off button to reset background colour.
 
+
+
 RIGHT palette:
+
+
 Colour palette controls the outline of the circles.
+
 control the size of the circles with the + and - buttons.
+
 off button toggles outline on and off.
+
 clear removes all saved circles.
+
 DOUBLE CLICK right off button for a surprise! Not recommended until you are finished with your picture ;)
 
 DOUBLE CLICK ANY COLOUR TO CHANGE THE BACKGROUND TO THAT COLOUR.
+
+--------------------------------------------
 
 This project uses webpack to transpile and bundle ES6 React code. To use, consider these steps:
 
